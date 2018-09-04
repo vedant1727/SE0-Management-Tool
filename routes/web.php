@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/signup','UserController@store');
+
+/*CompanyController*/
+Route::get('/company','CompanyController@index');
+Route::post('/company','CompanyController@store');

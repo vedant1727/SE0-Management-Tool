@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKeywordsTable extends Migration
+class CreateDescriptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateKeywordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('keywords', function (Blueprint $table) {
+        Schema::create('descriptions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('keyword');
+            $table->string('description');
             $table->morphs('pages');
             $table->morphs('companies');
             $table->timestamps();
@@ -29,6 +29,6 @@ class CreateKeywordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('keywords');
+        Schema::dropIfExists('descriptions');
     }
 }
