@@ -30,6 +30,12 @@ class DropColumnTypeForMorph extends Migration
                 $table->dropColumn(['companies_type','pages_type']);
             });
         }
+
+        if (Schema::hasTable('pages') && Schema::hasColumn('pages', 'companies_type')) {
+            Schema::table('pages', function (Blueprint $table) {
+                $table->dropColumn('companies_type');
+            });
+        }
     }
 
     /**
@@ -41,6 +47,12 @@ class DropColumnTypeForMorph extends Migration
     {
         if (Schema::hasTable('users') && !Schema::hasColumn('users', 'companies_type')) {
             Schema::table('users', function (Blueprint $table) {
+                $table->string('companies_type');
+            });
+        }
+
+        if (Schema::hasTable('pages') && !Schema::hasColumn('pages', 'companies_type')) {
+            Schema::table('pages', function (Blueprint $table) {
                 $table->string('companies_type');
             });
         }

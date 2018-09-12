@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Keyword;
+use App\Page;
 use Illuminate\Http\Request;
 
-class KeywordController extends Controller
+class PageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class KeywordController extends Controller
      */
     public function index(Request $request)
     {
-        $per_page = $request->has('per_page') ? $request->input('per_page') : 20;
-        return Keyword::paginate($per_page);
+        $per_page = $request->has('per_page') ? $request->input('per_page') : 15;
+        return Page::paginate($per_page);
     }
 
     /**
@@ -26,20 +26,20 @@ class KeywordController extends Controller
      */
     public function store(Request $request)
     {
-        $keyword = new Keyword;
+        $page = new Page;
 
-        $keyword->keyword = $request->keyword;
-        $keyword->pages_id = $request->pages_id;
-        $keyword->companies_id = $request->companies_id;
+        $page->page_url = $request->page_url;
+        $page->page_name = $request->page_name;
+        $page->companies_id = $request->companies_id;
 
-        if ($keyword->save()) {
+        if ($page->save()) {
             return Response()->json([
                 "success"=>true,
                 "data"=>[
-                    "id"=>$keyword->id,
-                    "keyword"=>$keyword->keyword,
-                    "pages_id"=>$keyword->pages_id,
-                    "comapanies_id"=>$keyword->companies_id
+                    "id"=>$page->id,
+                    "page_url"=>$page->page_url,
+                    "page_name"=>$page->page_name,
+                    "comapanies_id"=>$page->companies_id
                 ]
             ]);
         } else {
@@ -53,35 +53,36 @@ class KeywordController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Keyword  $keyword
+     * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return Keyword::find($id);
+        return Page::find($id);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Keyword  $keyword
+     * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
-        $keyword = Keyword::find($request->input('id'));
+        $page = Page::find($request->input('id'));
 
-        $keyword->keyword = $request->input('keyword');
+        $page->page_url = $request->input('page_url');
+        $page->page_name = $request->input('page_name');
 
-        if ($keyword->save()) {
+        if ($page->save()) {
             return Response()->json([
                 "success"=>true,
                 "data"=>[
-                    "id"=>$keyword->id,
-                    "keyword"=>$keyword->keyword,
-                    "pages_id"=>$keyword->pages_id,
-                    "comapanies_id"=>$keyword->companies_id
+                    "id"=>$page->id,
+                    "page_url"=>$page->page_url,
+                    "page_name"=>$page->page_name,
+                    "comapanies_id"=>$page->companies_id
                 ]
             ]);
         } else {
@@ -95,12 +96,12 @@ class KeywordController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Keyword  $keyword
+     * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Keyword $keyword,$id)
+    public function destroy(Page $page,$id)
     {
-        if ($keyword::destroy($id)) {
+        if ($page::destroy($id)) {
             return response()->json([
                 "success"=>true,
                 "message"=>"Successfully deleted."

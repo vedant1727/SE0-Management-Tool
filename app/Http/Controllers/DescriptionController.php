@@ -12,19 +12,10 @@ class DescriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $per_page = $request->has('per_page') ? $request->input('per_page') : 20;
+        return Description::paginate($per_page);
     }
 
     /**
@@ -35,7 +26,28 @@ class DescriptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $description = new Description;
+
+        $description->description = $request->description;
+        $description->pages_id = $request->pages_id;
+        $description->companies_id = $request->companies_id;
+
+        if ($description->save()) {
+            return Response()->json([
+                "success"=>true,
+                "data"=>[
+                    "id"=>$description->id,
+                    "description"=>$description->description,
+                    "pages_id"=>$description->pages_id,
+                    "comapanies_id"=>$description->companies_id
+                ]
+            ]);
+        } else {
+            return Response()->json([
+                "success"=>false,
+                "error"=>"Something went wrong."
+            ]);
+        }
     }
 
     /**
@@ -44,20 +56,9 @@ class DescriptionController extends Controller
      * @param  \App\Description  $description
      * @return \Illuminate\Http\Response
      */
-    public function show(Description $description)
+    public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Description  $description
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Description $description)
-    {
-        //
+        return Description::find($id);
     }
 
     /**
@@ -67,9 +68,28 @@ class DescriptionController extends Controller
      * @param  \App\Description  $description
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Description $description)
+    public function update(Request $request)
     {
-        //
+        $description = Description::find($request->input('id'));
+
+        $description->description = $request->input('description');
+
+        if ($description->save()) {
+            return Response()->json([
+                "success"=>true,
+                "data"=>[
+                    "id"=>$description->id,
+                    "description"=>$description->description,
+                    "pages_id"=>$description->pages_id,
+                    "comapanies_id"=>$description->companies_id
+                ]
+            ]);
+        } else {
+            return Response()->json([
+                "success"=>false,
+                "error"=>"Something went wrong."
+            ]);
+        }
     }
 
     /**
@@ -78,8 +98,18 @@ class DescriptionController extends Controller
      * @param  \App\Description  $description
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Description $description)
+    public function destroy(Description $description,$id)
     {
-        //
+        if ($description::destroy($id)) {
+            return response()->json([
+                "success"=>true,
+                "message"=>"Successfully deleted."
+            ]);
+        } else {
+            return response()->json([
+                "success"=>false,
+                "error"=>"Something went wrong."
+            ]);
+        }
     }
 }

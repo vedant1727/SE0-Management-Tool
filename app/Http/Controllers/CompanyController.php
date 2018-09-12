@@ -13,8 +13,9 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($per_page = 20)
+    public function index(Request $request)
     {
+        $per_page = $request->has('per_page') ? $request->input('per_page') : 15;
         return Company::paginate($per_page);
     }
 
@@ -57,8 +58,18 @@ class CompanyController extends Controller
                     "success"=>true,
                     "data"=>[
                         "id"=>$company->id,
+                        "company_code"=>$entered_company_row->company_code,
                         "name"=>$company->name,
-                        "company_code"=>$entered_company_row->company_code
+                        "base_url"=>$company->base_url,
+                        "primary_email"=>$company->primary_email,
+                        "secondary_email"=>$company->secondary_email,
+                        "office_address"=>$company->office_address,
+                        "landmark"=>$company->landmark,
+                        "city"=>$company->city,
+                        "state"=>$company->state,
+                        "description"=>$company->description,
+                        "primary_contact_number"=>$company->primary_contact_number,
+                        "secondary_contact_number"=>$company->secondary_contact_number
                     ]
                 ]);
             } else {
@@ -82,9 +93,9 @@ class CompanyController extends Controller
      * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
+    public function show($id)
     {
-        //
+        return Company::find($id);
     }
 
     /**
@@ -94,9 +105,48 @@ class CompanyController extends Controller
      * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(Request $request)
     {
-        //
+
+        $company = Company::find($request->input('id'));
+        
+        $company->name = $request->input('name');
+        $company->base_url = $request->input('base_url');
+        $company->primary_email = $request->input('primary_email');
+        $company->secondary_email = $request->input('secondary_email');
+        $company->office_address = $request->input('office_address');
+        $company->landmark = $request->input('landmark');
+        $company->city = $request->input('city');
+        $company->state = $request->input('state');
+        $company->description = $request->input('description');
+        $company->primary_contact_number = $request->input('primary_contact_number');
+        $company->secondary_contact_number = $request->input('secondary_contact_number');
+
+        if ($company->save()) {
+            return response()->json([
+                "success"=>true,
+                "data"=>[
+                    "id"=>$company->id,
+                    "company_code"=>$company->company_code,
+                    "name"=>$company->name,
+                    "base_url"=>$company->base_url,
+                    "primary_email"=>$company->primary_email,
+                    "secondary_email"=>$company->secondary_email,
+                    "office_address"=>$company->office_address,
+                    "landmark"=>$company->landmark,
+                    "city"=>$company->city,
+                    "state"=>$company->state,
+                    "description"=>$company->description,
+                    "primary_contact_number"=>$company->primary_contact_number,
+                    "secondary_contact_number"=>$company->secondary_contact_number
+                ]
+            ]);
+        } else {
+            return response()->json([
+                "success"=>false,
+                "error"=>"Something went wrong."
+            ]);
+        }
     }
 
     /**
@@ -105,8 +155,18 @@ class CompanyController extends Controller
      * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company)
+    public function destroy(Company $company, $id)
     {
-        //
+        if ($company::destroy($id)) {
+            return response()->json([
+                "success"=>true,
+                "message"=>"Successfully deleted."
+            ]);
+        } else {
+            return response()->json([
+                "success"=>false,
+                "error"=>"Something went wrong."
+            ]);
+        }
     }
 }

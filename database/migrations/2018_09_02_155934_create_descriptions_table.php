@@ -19,6 +19,7 @@ class CreateDescriptionsTable extends Migration
             $table->morphs('pages');
             $table->morphs('companies');
             $table->timestamps();
+            $table->unique('pages_id');
         });
     }
 
