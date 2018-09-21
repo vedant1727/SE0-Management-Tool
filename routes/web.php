@@ -11,11 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+/*VIEW Routes*/
+Route::get('/dashboard', function () {
+    return view('dashboard');
 });
-
-Route::post('/signup','UserController@store');
 
 /*CompanyController*/
 Route::get('/company','CompanyController@index');
