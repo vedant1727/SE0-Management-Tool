@@ -13,7 +13,7 @@
 
 /*VIEW Routes*/
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard', ['name' => 'James']);
 });
 
 /*CompanyController*/

@@ -15,7 +15,7 @@ class CompanyController extends Controller
      */
     public function index(Request $request)
     {
-        $per_page = $request->has('per_page') ? $request->input('per_page') : 15;
+        $per_page = $request->has('per_page') ? $request->input('per_page') : 10;
         return Company::paginate($per_page);
     }
 

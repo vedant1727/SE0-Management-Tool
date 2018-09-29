@@ -1,0 +1,99 @@
+.content-wrapper {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	width: 100%;
+}
+
+.entity{
+	display: inline-block;
+	position: relative;
+	top: 35px;
+	margin: 0 30px;
+}
+
+.entity h4{
+	margin: 0 0 10px 0;
+}
+
+.entity .entity-collection{
+	margin-top: 30px;
+	border-radius: 10px; 
+}
+
+.collection .collection-item {
+	cursor: pointer;
+	padding: 15px 25px !important;
+}
+
+.collection .collection-item:hover{
+	background-color: #f7f1ff;
+}
+
+.collection .collection-item:hover a {
+	display: block;
+}
+
+.collection .collection-item.avatar .title {
+	font-weight: 500;
+	margin-bottom: 7px;
+	font-size: 20px;
+}
+
+.collection .collection-item.avatar .title a:hover {
+	text-decoration: underline !important;
+}
+
+.secondary-content, .secondary-content-2, .secondary-content-3 {
+	background-color: #f7f1ff;
+	z-index: 10;
+	display: none;
+	position: absolute;
+	color: #8346de;
+	right: 16px;
+}
+
+.secondary-content:hover, .secondary-content-2:hover , .secondary-content-3:hover {
+	font-weight: 500;
+}
+
+.collection .collection-item.avatar .secondary-content-2 {
+    top: 40px;
+}
+
+.collection .collection-item.avatar .secondary-content-3 {
+	top: 65px;
+}
+
+.action-button {
+	position: absolute;
+	right: 0;
+	top: 10px;
+	font-weight: 500;
+	border:1px solid #9854ff;
+	color: #8346de;
+	border-radius: 5px;
+}
+
+.action-button:hover{
+	background-color: #9854ff;
+	color: white;
+}
+
+.company {
+	width: 60%;
+}
+
+.page {
+	width:40%
+}
+
+#addPage p.company-name {
+	font-weight: 500;
+	font-size: 1rem;
+	margin: 20px 0 0 0;
+}
+
+#addPage p.company-name span{
+	color: #9854ff;
+}

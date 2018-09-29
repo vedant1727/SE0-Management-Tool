@@ -1,0 +1,152 @@
+/*######## HELPER CLASSES #########*/
+.bg-theme{
+	background-color: #9854ff !important;
+}
+
+.theme-color {
+	color: #9854ff !important;
+}
+
+.bg-content{
+	background-color: #f9fafe !important;
+}
+
+.p-0 {
+	padding: 0 !important;
+}
+
+.m-0 {
+	margin: 0 !important;
+}
+
+.mb-0 {
+	margin-bottom: 0 !important;
+}
+
+div.underline{
+	height: 3px;
+	width: 45px;
+	background-color: #9854ff;
+}
+
+a{
+	text-decoration: none !important;
+	color: inherit;
+}
+
+/* label color */
+label {
+ color: #9854ff !important;
+ font-weight: 500;
+}
+/* label focus color */
+input[type=text]:focus + label,
+input[type=email]:focus + label,
+textarea:focus + label {
+ color: #9854ff;
+}
+/* label underline focus color */
+input[type=text]:focus,
+input[type=email]:focus,
+textarea:focus {
+ border-bottom: 1px solid #9854ff !important;
+ box-shadow: 0 1px 0 0 #9854ff;
+}
+
+/* icon prefix focus color */
+.input-field .prefix.active {
+ color: #9854ff;
+}
+
+.menu-sidenav{
+	position: fixed;
+	overflow-x: hidden;
+	height: 1000px;
+	width: 20%;
+}
+
+.menu-sidenav .brand-name{
+	padding: 20px 0px 20px 20px;
+}
+
+.menu-sidenav .brand-name a{
+	font-weight: 900;
+	color: white;
+	font-size: 2.2rem;
+}
+
+.menu-sidenav .brand-name p{
+	color: white;
+	font-weight: 500;
+	margin-top: 0;
+}
+
+.menu-sidenav ul li.sidenav-item {
+	cursor: pointer;
+	color: white;
+	font-size: 1.2rem;
+	font-weight: 500;
+	padding: 15px 20px;
+}
+
+.menu-sidenav ul li.sidenav-item:hover, .menu-sidenav ul li.sidenav-item.active {
+	background-color: #8346de;
+	border-left: 5px solid white;
+}
+
+.content {
+	position: relative;
+	width: 80%;
+	margin-left: 20%;
+	min-height: 653px;
+	padding: 10px 40px;
+}
+
+.content ul.nav-content{
+	display: flex !important;
+	flex-flow: row nowrap;
+	justify-content: flex-end;
+}
+
+.content ul.nav-content li{
+	font-weight: 500;
+	transition: .3s ease-out;
+	transition: background-color .3s;
+	cursor: pointer;
+	display: inline;
+	font-size: 1.1rem;
+	padding: 10px 15px;
+	text-transform: capitalize;
+	border-radius: 7px;
+}
+
+.content ul.nav-content li:hover{
+	background-color: #9854ff;
+	color: white;
+}
+
+.modal {
+	border-radius: 10px !important;
+	padding: 15px 25px;
+	max-height: 85% !important;
+}
+
+.modal h5 {
+	margin-bottom: 10px !important;
+}
+
+.modal div.underline {
+	margin-bottom: 10px;
+}
+
+.modal .input-field{
+	margin-bottom: 0.5rem !important;
+}
+
+button[type='submit'] {
+	background-color: #9854ff !important;
+}
+
+button[type='submit']:hover {
+	background-color: #8346de !important;
+}
